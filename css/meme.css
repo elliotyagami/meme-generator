@@ -1,0 +1,62 @@
+#canvas{
+ border: 2px solid black;
+}
+body{
+    background-image: url('/back.jpeg');
+}
+.canvas_container{
+    margin: auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    width: 80%;
+}
+.canvas_layer{
+    display: inline-block;
+}
+
+.work_layer{
+    display: inline-block;
+    vertical-align:top;
+}
+.title_inner{
+    font:normal bold 20px "Times New Roman", Times, serif;
+}
+.title{
+    font:normal normal 40px "Arial Black", Gadget, sans-serif;
+    margin-bottom: 60px;
+    color: 2f2f2f;
+}
+.custom_button {
+    background-color: gray; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+select option {
+    margin: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+textarea{
+border: 1px solid #3d3d3d;
+}
+#imageLoader_d{
+    margin-top: 30px;
+    background-color: #4CAF50;
+}
+#addtextlayer, #saveclick{
+    background-color: #008CBA;
+}
+#removeText, #clearbackground{
+    background-color: #f44336;
+}
+

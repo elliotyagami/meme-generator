@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
+	<link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+	<title>MEME Maker</title>
+	<link rel="stylesheet" href="css/meme.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jscolor.js"></script>
+	<script type="text/javascript" src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
+</head>
+
+<body onload="init();">
+	<div >
+		<div>
+			<div class="title" style="text-align: center">MEME Generator</div>
+			<div class="canvas_container">
+				<div class="canvas_layer">
+					<div class="canvas">
+						<canvas id="canvas" width="536" height="400"></canvas>
+					</div>
+				</div>
+				<div class="work_layer">
+				<div class="work_layer_in">
+					<div id="editarea">
+						<label class="title_inner">Text Options</label>
+						<div>
+
+							<textarea id="memetxt" name="memetxt" placeholder="meme text" cols='60' rows='4'></textarea>
+							<div >
+								<input id="memetxtcolor" class="color" type="text" value="FF7700">
+								<select runat="server" id="fontfamily">
+
+									<option value="Bangers" selected>Bangers</option>
+									<option value="Shadows Into Light">Shadows</option>
+									<option value="La Belle Aurore">La Belle Aurore</option>
+									<option value="Reenie Beanie">Reenie Beanie</option>
+									<option value="franklin-gothic-urw-con-sc">Dark Knight</option>
+
+								</select>
+								<select runat="server" id="fontsize">
+									<option value="20px">20px</option>
+									<option value="30px" selected>30px</option>
+									<option value="50px">50px</option>
+									<option value="80px">80px</option>
+									<option value="70px">70px</option>
+								</select>
+							</div>
+							<div >
+								<input type="file" id="imageLoader" name="imageLoader" />
+								<a href="#" class="custom_button" id="addtextlayer">Add Text</a>
+								<a href="#" class="custom_button" id="removeText">Remove Text</a>
+							</div>
+						</div>
+					</div>
+					<div>
+						<a href="#" class="custom_button" id="saveclick">Save</a>
+						<a href="#" class="custom_button" id="clearbackground">Reset MEME</a>
+					</div>
+
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/meme.js"></script>
+</body>
+</html>
