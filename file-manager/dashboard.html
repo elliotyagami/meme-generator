@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+            <html>
+            <head>
+                <title>Address Book App</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+                <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+                <link rel="stylesheet" href="./style.css">
+            </head>
+            <body>
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header ">
+                        <a class="navbar-brand" href="">Address Book App</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <a class="navbar-link btn btn-default navbar-btn navbar-right" href="#" onclick="localStorage.clear();location.href = '/login.html';">Log out</a>
+                        <p class="navbar-text navbar-right">Signed in as <span id="userId"></span></p>
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+            <div class="form-inline">
+            <form class="form-group" id="searchAddress">
+                <input type="text" class="form-control" id="searchText" placeholder="Enter name to search..." min="3">
+                <button class="btn btn-default">Submit</button>
+            </form>
+            <div class="pull-right">
+            <button style="margin-bottom:10px" id="collapse" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Add New Address
+            </button>
+            </div>
+            </div><br style="clear: both">
+            <div class="collapse" id="collapseExample">
+            <hr>
+            <form id="addressForm">
+            <div class="form-group">
+                <label for="exampleInputName">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Name" required="">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputMobile">Mobile No.</label>
+                <input type="number" class="form-control" id="mobile" placeholder="Enter mobile no." min="1111111111" max="999999999999">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputAddress">Address</label>
+                <textarea class="form-control" rows="4" id="address" placeholder="Enter Address"></textarea>
+            </div>
+            <button id="addAddress" class="btn btn-default">Submit</button>
+            </div>
+            </form>
+
+            <table class="container table table-hover" id="addressTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr></tr>
+                </tbody>
+            </table>
+
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+            <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+            <script type="text/javascript">
+                var userId = localStorage.getItem("userId") || "";
+                var authId = localStorage.getItem("authId") || "";
+
+
+                if (userId) {
+                    $("#userId").html(userId);
+                } else {
+                    location.href = "/login.html"
+                }
+
+                $(document).ready(function () {
+
+                    $.post("/index", { authid: authId }, function (data) {
+                        data.forEach(function (d) {
+                            $('#addressTable tr:last').after('<tr><td>' + d.name + '</td><td>' + d.email + '</td><td>' + d.mobile + '</td><td>' + d.address + '</td></tr>');
+                        })
+                    })
+                })
+
+
+                $("#addressForm").submit(function (e) {
+                    e.preventDefault();
+
+                    var name = $("#name").val();
+                    var email = $("#email").val();
+                    var mobile = $("#mobile").val();
+                    var address = $("#address").val();
+
+
+                    $("#addresses").append("<li>" + name + "</li>");
+                    $.post("/new", { authid: authId, address: address, name: name, email: email, mobile: mobile }, function (data) {
+                        $('#addressTable > tbody:last-child').append('<tr><td>' + name + '</td><td>' + email + '</td><td>' + mobile + '</td><td>' + address + '</td><td></tr>');
+                        $("#name").val(""); $("#email").val(""); $("#mobile").val(""); $("#address").val("");
+                        if (!data) {
+                            alert("Something went wrong")
+                            location.reload();
+                        }
+                    })
+                })
+
+                $("#searchAddress").submit(function (e) {
+                    e.preventDefault();
+
+                    var keyword = $("#searchText").val();
+
+                    $('#addressTable > tbody').html("<td></td>")
+                    $.post("/search", { authid: authId, keyword: keyword }, function (response) {
+                        let data = response.data;
+                        if (data.length === 0) {
+                            $('#addressTable > tbody:last-child').append('<tr><td>No results found</td></tr>');
+                        } else {
+                            for (var i = 0; i < data.length; i++) {
+                                $('#addressTable > tbody:last-child').append('<tr><td>' + data[i].name + '</td><td>' + data[i].email + '</td><td>' + data[i].mobile + '</td><td>' + data[i].address + '</td><td></tr>');
+                            }
+                        }
+                    })
+                })
+            </script>
+            </body>
+            </html>
