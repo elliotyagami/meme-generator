@@ -2,10 +2,13 @@
  border: 2px solid black;
 }
 body{
+    padding:0;
+    margin:0;
     background-image: url('/back.jpeg');
 }
 .canvas_container{
     margin: auto;
+    margin-top: 8%;
     padding: 20px;
     background-color: #f0f0f0;
     width: 80%;
@@ -22,8 +25,7 @@ body{
     font:normal bold 20px "Times New Roman", Times, serif;
 }
 .title{
-    font:normal normal 40px "Arial Black", Gadget, sans-serif;
-    margin-bottom: 60px;
+    font:normal normal 20px "Arial Black", Gadget, sans-serif;
     color: 2f2f2f;
 }
 .custom_button {
@@ -38,6 +40,11 @@ body{
     font-size: 16px;
 }
 
+.meme_img{
+    margin: 2px;
+    width: 150px;
+    height: 100px;
+}
 
 select option {
     margin: 40px;

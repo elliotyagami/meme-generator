@@ -1,18 +1,18 @@
 var request = require("request");
-    var accessKey = "341cc5616d655b6a4ba819fed6f203ca07bd3a589ff8639fcf6448ac23967495";
+    var accessKey = "";
     var benchId = "memeGenerator";
     var userId = "harshjn";
-    
+
     module.exports={
         "set": function(key, value, callback){
-            request.post({ 
+            request.post({
                  url:"https://memory.backbench.io/",
                  body: {
                     "cmd": "bb:mem:set",
                     "auth": {
                          "benchId": benchId,
                          "userId": userId,
-                         "accessKey": accessKey 
+                         "accessKey": accessKey
                     },
                     "args": {
                         "key": key,
@@ -27,7 +27,7 @@ var request = require("request");
                         callback(undefined, body);
                     }
              });
-        }, 
+        },
         "get": function(key, cb){
            request.post({
                 url: "https://memory.backbench.io/",
@@ -49,7 +49,7 @@ var request = require("request");
                 } else{
                     cb(undefined, body.reply);
                 }
-            }); 
+            });
         },
         "delete": function(key, cb){
            request.post({
@@ -72,6 +72,6 @@ var request = require("request");
                 } else{
                     cb(undefined, body.reply);
                 }
-            }); 
+            });
         }
-    };   
+    };

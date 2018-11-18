@@ -12,7 +12,7 @@
 	<link href='https://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-	<title>MEME Maker</title>
+	<title>MEME Generator</title>
 	<link rel="stylesheet" href="css/meme.css">
 	<script type="text/javascript" src="https://coursecare.ml/jquery.min.js"></script>
 	<script type="text/javascript" src="https://coursecare.ml/jscolor.js"></script>
@@ -20,23 +20,32 @@
 </head>
 
 <body onload="init();">
-	<div >
-		<div>
-			<div class="title" style="text-align: center">MEME Generator</div>
-			<div class="canvas_container">
-				<div class="canvas_layer">
-					<div class="canvas">
-						<canvas id="canvas" width="536" height="400"></canvas>
-					</div>
+	<div>
+			<div style="background-color: #f0f0f0; height: 70px; width: 100%; position: absolute; top:0; border-radius: 5px; box-shadow: 5px 2px 2px ">
+				<div style="position: absolute; left: 20px">
+						<p class="title">Meme Generator</p>
 				</div>
-				<div class="work_layer">
+				<div style="position: absolute; right: 20px">
+					<p >Signed in as
+						<span id="userId"></span>
+						<a style="display: inline-block" class="custom_button" href="#" onclick="localStorage.clear();location.href = '/login.html';">Log out</a>
+					</p>
+				</div>
+			</div>
+		<div class="canvas_container">
+			<div class="canvas_layer">
+				<div class="canvas">
+					<canvas id="canvas" width="536" height="400"></canvas>
+				</div>
+			</div>
+			<div class="work_layer">
 				<div class="work_layer_in">
 					<div id="editarea">
 						<label class="title_inner">Text Options</label>
 						<div>
 
 							<textarea id="memetxt" name="memetxt" placeholder="meme text" cols='60' rows='4'></textarea>
-							<div >
+							<div>
 								<input id="memetxtcolor" class="color" type="text" value="FF7700">
 								<select runat="server" id="fontfamily">
 
@@ -55,7 +64,7 @@
 									<option value="70px">70px</option>
 								</select>
 							</div>
-							<div >
+							<div>
 								<input type="file" id="imageLoader" name="imageLoader" />
 								<a href="#" class="custom_button" id="addtextlayer">Add Text</a>
 								<a href="#" class="custom_button" id="removeText">Remove Text</a>
@@ -68,21 +77,37 @@
 					</div>
 
 				</div>
-				</div>
+			</div>
+			<div style="text-align: center;">
+				<img src="/images/meme1.jpeg" alt="" class="meme_img">
+				<img src="/images/meme2.jpeg" alt="" class="meme_img">
+				<img src="/images/meme3.jpeg" alt="" class="meme_img">
+				<img src="/images/meme4.jpeg" alt="" class="meme_img">
+				<img src="/images/meme5.jpeg" alt="" class="meme_img">
+				<img src="/images/meme6.jpeg" alt="" class="meme_img">
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="https://coursecare.ml/meme.js"></script>
 	<script>
-                var userId = localStorage.getItem("userId") || "";
-                var authId = localStorage.getItem("authId") || "";
+		// var userId = localStorage.getItem("userId") || "";
+		// var authId = localStorage.getItem("authId") || "";
 
 
-                if (userId) {
-                    $("#userId").html(userId);
-                } else {
-                    location.href = "/login.html"
-                }
+		// if (userId) {
+		// 	$("#userId").html(userId);
+		// } else {
+		// 	location.href = "/login.html"
+		// }
+		// $(document).ready(function () {
+
+		// 	$.post("/index", { authid: authId }, function (data) {
+		// 		data.forEach(function (d) {
+		// 			$('#addressTable tr:last').after('<tr><td>' + d.name + '</td><td>' + d.email + '</td><td>' + d.mobile + '</td><td>' + d.address + '</td></tr>');
+		// 		})
+		// 	})
+		// })
 	</script>
 </body>
+
 </html>

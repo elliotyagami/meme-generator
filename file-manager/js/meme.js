@@ -118,6 +118,13 @@ var equalheight = function (container, selectNode) {
 
 }
 
+$(document).ready(function() {
+    $('.meme_img').click(function(){
+        console.log("done")
+    addImageToCanvas(this);
+    })
+});
+
 function adjustAllImage() {
 
     $("#inputs li img").each(function (index) {
@@ -144,9 +151,6 @@ function adjustAllImage() {
 
 }
 
-function setText(txt) {
-
-}
 
 function handleClick(evt) {
 
@@ -176,6 +180,9 @@ function handleImageScale(evt) {
     $('#weight').val(memeimage.currntimage.scaleX * 100);
     zindex = zindex + 1;
 }
+
+
+
 function handleImage(e) {
     var reader = new FileReader();
     reader.onload = function (event) {
